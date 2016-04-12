@@ -16,13 +16,14 @@ import com.google.zxing.common.BitMatrix;
 public class Test123 {
     public static void main(String []args)throws Exception{
         String text = "你好";
-        int width = 100;
-        int height = 100;
-        String format = "png";
+        int width = 400;
+        int height = 400;
+        String format = "jpg";
         Hashtable hints= new Hashtable();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height,hints);
-        File outputFile = new File("new.png");
+//        System.out.println(System.getProperty("user.dir"));
+        File outputFile = new File("src/main/webapp/QRimages/AAA.jpg");
         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
 
     }

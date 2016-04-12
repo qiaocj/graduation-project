@@ -34,5 +34,5 @@ public interface SignInMapper {
     @Results(value = {
             @Result(property = "classCode", column = "class_code")
     })
-    List<Long> getCodes();
+    List<Long> getStudentCodes();
 }
