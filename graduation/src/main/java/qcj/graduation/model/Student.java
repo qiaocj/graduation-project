@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by Administrator on 2016/4/11.
  */
 @Data
-public class Student implements Serializable{
+public class Student implements Serializable {
 
     private Long id;
 
@@ -18,6 +18,8 @@ public class Student implements Serializable{
     private String name;
 
     private Long classCode;
+
+    private String cellphone;
 
     private String photo;
 

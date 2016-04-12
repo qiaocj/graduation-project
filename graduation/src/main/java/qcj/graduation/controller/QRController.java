@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import qcj.graduation.service.QRservice;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
@@ -22,9 +23,15 @@ public class QRController {
     private QRservice qRservice;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String createQR(@RequestBody Map<String,Object> map) throws IOException, WriterException {
+    public String createQR(@RequestBody Map<String, Object> map) throws IOException, WriterException {
         String code = map.get("code").toString();
         String path = qRservice.createQR(code);
-        return  path;
+        return path;
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void downloadQR(@RequestBody Map<String, Object> map,HttpServletResponse response) throws IOException, WriterException {
+        String code = map.get("code").toString();
+        qRservice.downloadQR(response,code);
     }
 }

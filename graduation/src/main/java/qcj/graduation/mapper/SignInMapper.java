@@ -12,12 +12,6 @@ import java.util.List;
  * Created by Administrator on 2016/4/10.
  */
 public interface SignInMapper {
-    @Select("SELECT * FROM sign_in order by class_code")
-    @Results(value = {
-            @Result(property = "classCode", column = "class_code")
-    })
-    List<SignIn> getSignInList();
-
     @Select("SELECT * FROM sign_in where code = #{code}")
     @Results(value = {
             @Result(property = "classCode", column = "class_code")

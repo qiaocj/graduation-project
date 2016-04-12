@@ -18,4 +18,10 @@ public interface StudentMapper {
             @Result(property = "classCode", column = "class_code")
     )
     List<Student> getNotSignInList(@Param("classCodes") String classCodes, @Param("codes") String codes);
+
+    @Select("SELECT class_code from student where code = #{code}")
+    Long getClassCode(Long code);
+
+    @Select("SELECT * from student where code = #{code}")
+    Student getStudentDetail(Long code);
 }
