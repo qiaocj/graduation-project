@@ -25,7 +25,11 @@ public class StudentService {
     public List<Student> getSignInList() {
         List<Long> codes = signInMapper.getStudentCodes();
         List<Student> students = new ArrayList<Student>();
-        codes.stream().map(s -> students.add(studentMapper.getStudentDetail(s)));
+        for(Long code : codes){
+            Student student = studentMapper.getStudentDetail(code);
+            students.add(student);
+        }
+//        codes.stream().map(s -> students.add(studentMapper.getStudentDetail(s)));
         return students;
     }
 
@@ -40,9 +44,18 @@ public class StudentService {
 
     public List<Student> getNotSignInList() {
         List<Long> classCode = signInMapper.getClassCode();
-        String classCodes = String.valueOf(classCode);
-        String studentCodes = String.valueOf(signInMapper.getStudentCodes());
+        String classCodes = listToString(classCode);
+        String studentCodes = listToString(signInMapper.getStudentCodes());
         List<Student> notSignIn = studentMapper.getNotSignInList(classCodes, studentCodes);
         return notSignIn;
+    }
+
+    public String listToString(List<Long> sources){
+        StringBuffer sb = new StringBuffer();
+        for(Long source : sources){
+            sb.append(source).append(",");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
     }
 }

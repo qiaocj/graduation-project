@@ -23,5 +23,8 @@ public interface StudentMapper {
     Long getClassCode(Long code);
 
     @Select("SELECT * from student where code = #{code}")
+    @Results(
+            @Result(property = "classCode", column = "class_code")
+    )
     Student getStudentDetail(Long code);
 }

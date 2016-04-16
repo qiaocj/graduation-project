@@ -19,14 +19,8 @@ public interface SignInMapper {
     SignIn isSucess(@Param("code") Long code);
 
     @Select("SELECT DISTINCT class_code FROM sign_in ")
-    @Results(value = {
-            @Result(property = "classCode", column = "class_code")
-    })
     List<Long> getClassCode();
 
     @Select("SELECT DISTINCT code FROM sign_in ")
-    @Results(value = {
-            @Result(property = "classCode", column = "class_code")
-    })
     List<Long> getStudentCodes();
 }
