@@ -141,21 +141,13 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 
+$("input[type='button']").click(function(){
+        window.location.href = "/file/download?flag=false";
+    });
+
 
     $(document).ready(function () {
-        $.ajax({
-            url: "/student/getlist",
-            type: "post",
-            contentType: "application/json",
-            success: function (data) {
-                $.each(data, function () {
-                    $("tbody").append('<tr><td>' + this.code + '</td>' +
-                            '<td>' + this.classCode + '</td>' +
-                            '<td>' + this.name + '</td>' +
-                            '<td class="center">' + this.cellphone + '</td></tr>');
-                })
-            }
-        })
+       
         $('#dataTables-example').DataTable({
             // "sAjaxDataProp":"data",
             "sAjaxSource": "/student/getnotsignin",

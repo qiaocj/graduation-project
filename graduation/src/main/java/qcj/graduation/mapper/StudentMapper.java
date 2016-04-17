@@ -1,9 +1,6 @@
 package qcj.graduation.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import qcj.graduation.model.Student;
 
 import java.util.List;
@@ -13,11 +10,11 @@ import java.util.List;
  */
 public interface StudentMapper {
 
-    @Select("SELECT * FROM student WHERE class_code IN (#{classCodes}) AND code NOT IN (#{codes}) order by class_code")
+    @SelectProvider(type = StudentMapperProvider.class, method = "getNotSignInList")
     @Results(
             @Result(property = "classCode", column = "class_code")
     )
-    List<Student> getNotSignInList(@Param("classCodes") String classCodes, @Param("codes") String codes);
+    List<Student> getNotSignInList(@Param("classCodes") List<Long> classCodes, @Param("codes") List<Long> codes);
 
     @Select("SELECT class_code from student where code = #{code}")
     Long getClassCode(Long code);

@@ -6,6 +6,7 @@
 
     <groupId>com.qcj.graduation</groupId>
     <artifactId>qcj-graduation</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
 

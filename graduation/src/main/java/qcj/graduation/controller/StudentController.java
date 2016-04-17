@@ -29,11 +29,10 @@ public class StudentController {
         return result;
     }
 
-    @RequestMapping(value = "/isSuccess", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/isSuccess", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public Boolean isSuccess(@RequestBody Map<String,Object> map) {
-        Long code = Long.valueOf(map.get("code").toString());
-        return studentService.isSuccess(code);
+    public Boolean isSuccess(@RequestParam String code) {
+        return studentService.isSuccess(Long.valueOf(code));
     }
     @RequestMapping(value = "/getnotsignin", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody

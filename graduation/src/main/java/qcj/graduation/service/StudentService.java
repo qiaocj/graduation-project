@@ -44,9 +44,8 @@ public class StudentService {
 
     public List<Student> getNotSignInList() {
         List<Long> classCode = signInMapper.getClassCode();
-        String classCodes = listToString(classCode);
-        String studentCodes = listToString(signInMapper.getStudentCodes());
-        List<Student> notSignIn = studentMapper.getNotSignInList(classCodes, studentCodes);
+        List<Long> studentCodes = signInMapper.getStudentCodes();
+        List<Student> notSignIn = studentMapper.getNotSignInList(classCode, studentCodes);
         return notSignIn;
     }
 

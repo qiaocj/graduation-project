@@ -22,10 +22,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Boolean login(@RequestBody Map<String, Object> map) {
-        Long userName = Long.valueOf(map.get("userName").toString());
-        String password = map.get("password").toString();
-        return userService.login(userName,password);
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Boolean login(@RequestParam Long username,@RequestParam String password) {
+        return userService.login(username,password);
     }
 }

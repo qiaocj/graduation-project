@@ -56,7 +56,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">登入</a>
+                                <a class="btn btn-lg btn-success btn-block">登入</a>
                             </fieldset>
                         </form>
                     </div>
@@ -77,6 +77,24 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <script>
+    $("a[class='btn btn-lg btn-success btn-block']").click(function(){
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        $.ajax({
+            url:"/user/login?username=" + username + "&password=" + password,
+            type:"get",
+            success:function(data){
+                if(data){
+                    window.location.href ="/admin.jsp";
+                } else{
+                    $("h3").text("账号或密码错误");
+                }
+            }
+        })
+    })
+
+    </script>
 </body>
 
 </html>

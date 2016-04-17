@@ -29,13 +29,6 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -98,7 +91,7 @@
                         <div class="panel-heading">
                             
                             <h3>已签到的学生
-                            <input type="button" type="button" class="btn btn-primary" value="导出为excel" style="float:right"></input>
+                            <input type="button" class="btn btn-primary" value="导出为excel" style="float:right"></input>
                             </h3>
                            
                         </div>
@@ -142,22 +135,11 @@
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-
+    $("input[type='button']").click(function(){
+        window.location.href = "/file/download?flag=true";
+    });
 
     $(document).ready(function () {
-        $.ajax({
-            url: "/student/getlist",
-            type: "post",
-            contentType: "application/json",
-            success: function (data) {
-                $.each(data, function () {
-                    $("tbody").append('<tr><td>' + this.code + '</td>' +
-                            '<td>' + this.classCode + '</td>' +
-                            '<td>' + this.name + '</td>' +
-                            '<td class="center">' + this.cellphone + '</td></tr>');
-                })
-            }
-        })
         $('#dataTables-example').DataTable({
             // "sAjaxDataProp":"data",
             "sAjaxSource": "/student/getlist",

@@ -27,20 +27,20 @@ public class QRservice {
 
         Long classCode = studentMapper.getClassCode(Long.valueOf(code));
 
-        int width = 200;
-        int height = 200;
+        int width = 400;
+        int height = 400;
         String format = "jpg";
         Hashtable hints = new Hashtable();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         BitMatrix bitMatrix = new MultiFormatWriter().encode(code + "," + classCode, BarcodeFormat.QR_CODE, width, height, hints);
-        File outputFile = new File("src/main/webapp/QRimages/" + code + ".jpg");
+        File outputFile = new File("src/main/webapp/QRimage/" + code + ".jpg");
         MatrixToImageWriter.writeToFile(bitMatrix, format, outputFile);
         String name = code + ".jpg";
         return name;
     }
 
     public void downloadQR(HttpServletResponse response, String code) throws IOException {
-        InputStream inStream = new FileInputStream("src/main/webapp/QRimages/" + code + ".jpg");
+        InputStream inStream = new FileInputStream("src/main/webapp/QRimage/" + code + ".jpg");
         OutputStream output = response.getOutputStream();
         response.reset();
         response.setHeader("Content-disposition", "attachment; filename=" + code + ".jpg");

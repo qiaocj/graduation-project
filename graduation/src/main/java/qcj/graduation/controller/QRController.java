@@ -21,20 +21,18 @@ public class QRController {
     @Autowired
     private QRservice qRservice;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public Map<String,Object> createQR(@RequestBody Map<String, Object> map) throws IOException, WriterException {
-        String code = map.get("code").toString();
+    public Map<String,Object> createQR(@RequestParam String code) throws IOException, WriterException {
         String path = qRservice.createQR(code);
         Map<String,Object> m = new HashMap<>();
         m.put("path",path);
         return m;
     }
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/download", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public void downloadQR(@RequestBody Map<String, Object> map,HttpServletResponse response) throws IOException, WriterException {
-        String code = map.get("code").toString();
+    public void downloadQR(@RequestParam String code,HttpServletResponse response) throws IOException, WriterException {
         qRservice.downloadQR(response,code);
     }
 }

@@ -2,10 +2,7 @@ package qcj.graduation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import qcj.graduation.service.FileService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +19,8 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void downloadExcel(@RequestBody Map<String, Object> map, HttpServletResponse response) throws IOException {
-        Boolean flag = Boolean.valueOf(map.get("flag").toString());
+    @RequestMapping(value = "/download", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void downloadExcel(@RequestParam Boolean flag, HttpServletResponse response) throws IOException {
         fileService.download(response, flag);
     }
 }
