@@ -78,7 +78,7 @@
                         <br>
                         <input type="button" class="btn btn-success" value="生成二维码"></button>
                     </div>
-                    <img src="file://E:/Users/Administrator/Desktop/MyGraduation/photo/1.jpg"/>
+                    <img src=""/>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
